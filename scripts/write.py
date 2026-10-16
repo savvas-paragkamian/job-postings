@@ -248,7 +248,7 @@ def main():
               (changed_now, "watched page changed", "watched pages changed")]
     message = ", ".join(f"{n} {one if n == 1 else many}" for n, one, many in counts if n)
     if message and cfg["settings"].get("notify", True) and not flag("no-notify"):
-        shown = notify(f"Job postings: new on {date}", f"{message}. See http://localhost:8000")
+        shown = notify(f"Job postings: new on {date}", f"{message}. See http://127.0.0.1:8000")
         say(f"notified: {message}" if shown else f"new: {message} (no notification: no notifier, or it failed)")
 
 

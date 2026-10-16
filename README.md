@@ -20,7 +20,7 @@ to install.
 ```bash
 cd ~/projects/job-postings
 python3 scripts/run.py               # fetch, score and write today's pages (about 4 minutes)
-python3 scripts/serve.py --open      # http://localhost:8000 in the browser; Ctrl-C stops it
+python3 scripts/serve.py --open      # http://127.0.0.1:8000 in the browser; Ctrl-C stops it
 python3 -m unittest discover tests   # the checks, no network
 ```
 

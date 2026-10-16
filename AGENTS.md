@@ -9,7 +9,7 @@ read it the same way.
 Savvas Paragkamian's job and funding alerts. Scripts fetch postings and calls from
 the platforms in `config/profiles.toml`, score them against five profiles drawn
 from his CV (`examples/kgfp_paragkamian.pdf`), and write Markdown pages that
-`scripts/serve.py` shows at http://localhost:8000. An optional skill may add
+`scripts/serve.py` shows at http://127.0.0.1:8000. An optional skill may add
 labelled notes. The design and its reasons are in `README.md`.
 
 ## Rules for agents working here
@@ -113,3 +113,20 @@ clock and kept launchd as the macOS alternative.
   never-fetched day and a day with every request failed; the crontab line run
   under `env -i` with cron's minimal PATH; both notifier commands built with the
   call captured, not shown. Not run on a Linux machine, and the crontab was not installed.
+
+## The local page: "Server unavailable", "404 File not found" (16 October 2026)
+
+Reported after the first `serve.py --open`. Every page answered 200; the 404 was
+the browser's request for `/favicon.ico`, which the plain file server answered with
+"File not found", and some viewers report as a failed page. The server also printed
+`http://localhost:8000` while it listens on 127.0.0.1 only, and on a Mac `localhost`
+may resolve to IPv6 first. Changed in `scripts/serve.py`:
+
+- the pages carry their own tab icon, and `/favicon.ico` answers 204;
+- it prints and opens `http://127.0.0.1:<port>/` (also in the notification text);
+- a missing page is a readable 404 page with links back, and `/index.html` serves `index.md`;
+- failed requests are printed in the terminal, so the next problem names its address;
+- a port already in use gives a sentence instead of a traceback.
+
+`tests/test_scripts.py` starts the server on a free port and checks a page, the
+`.html` alias, the icon, a plain file and a missing page.

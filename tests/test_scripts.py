@@ -6,17 +6,21 @@
 - each platform's reader on a trimmed copy of a real answer (tests/fixtures/, 16 October 2026):
   if a site changes its pages, save a new answer here and this is where it shows;
 - scoring with the real config: planted postings that must, and must not, be listed;
-- merging, dates, the watched-page markers and the Markdown of the local web page.
+- merging, dates, the watched-page markers, and the local web page (its Markdown,
+  and a real server on a free port: pages, the tab icon, a missing page).
 """
-import json
 import sys
+import threading
 import unittest
+import urllib.error
+import urllib.request
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import sources  # noqa: E402
 from common import FIELDS, Scorer, Terms, iso_date, load_config, same_posting  # noqa: E402
-from serve import markdown  # noqa: E402
+from serve import Handler, markdown  # noqa: E402
 from write import watched_lines  # noqa: E402
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -154,6 +158,24 @@ class Helpers(unittest.TestCase):
         lines, note = watched_lines(FIXTURES / "watch_sfi.html", w)
         self.assertEqual(note, "")
         self.assertTrue(lines[0].startswith("Opens") and any(l.startswith("Deadline") for l in lines), lines)
+
+    def test_web_page(self):
+        server = ThreadingHTTPServer(("127.0.0.1", 0), Handler)       # port 0: any free port
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        base = f"http://127.0.0.1:{server.server_address[1]}"
+
+        def status(path):
+            try:
+                with urllib.request.urlopen(base + path, timeout=5) as r:
+                    return r.status
+            except urllib.error.HTTPError as e:
+                return e.code
+        try:
+            self.assertEqual([status(p) for p in ["/README.md", "/README.html", "/favicon.ico", "/config/profiles.toml",
+                                                  "/no-such-page.md"]], [200, 200, 204, 200, 404])
+        finally:
+            server.shutdown()
+            server.server_close()
 
     def test_markdown(self):
         html = markdown("## Jobs (1)\n\n- **[A \\[b\\] title](https://x.org/a?b=1&c=2)** · Org  \n  Greece · **deadline 2026-11-01**\n\n| a | b |\n|---|---|\n| 1 | 2 |")

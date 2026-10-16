@@ -2,10 +2,10 @@
 
     python3 scripts/serve.py [--port=8000] [--open]
 
-then open http://localhost:8000 (--open does it for you). Only this computer can reach it (it listens on
-127.0.0.1). Pages are converted when asked for, so the output of a run that finishes
-while the server is up shows on the next reload. Other files (CSV, TOML, PDF) are
-served as they are. markdown() below knows the subset that the scripts and the README
+then open http://127.0.0.1:8000 (--open does it for you). Only this computer can reach it
+(it listens on 127.0.0.1). Pages are converted when asked for, so the output of a run that
+finishes while the server is up shows on the next reload. Other files (CSV, TOML, PDF) are
+served as they are; a failed request is printed in the terminal. markdown() below knows the subset that the scripts and the README
 use: headings, paragraphs, lists, quotes, tables, code, links, bold and italics.
 """
 import html
@@ -120,6 +120,7 @@ def markdown(md):
 PAGE = """<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%2317695a'/%3E%3C/svg%3E">
 <style>
 :root {{ --bg: #fbfaf7; --fg: #1f2328; --muted: #5f6872; --line: #e2dfd6; --code: #f0ede6; --accent: #17695a; }}
 @media (prefers-color-scheme: dark) {{
@@ -161,17 +162,32 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path = unquote(urlsplit(self.path).path)
+        if path == "/favicon.ico":          # browsers ask for a tab icon; the pages carry their own
+            self.send_response(204)
+            return self.end_headers()
         file = (ROOT / (path.lstrip("/") or "index.md")).resolve()
-        if file.suffix != ".md" or not file.is_file() or not file.is_relative_to(ROOT):
+        if file.suffix == ".html":          # /index.html, /open.html: the Markdown page of that name
+            file = file.with_suffix(".md")
+        if not file.is_relative_to(ROOT) or not file.exists():
+            return self.page(f"# Not found\n\nThere is no `{path}` here: go to the [index](/) or [Open now](/open.md). "
+                             "If the index itself is missing, run `python3 scripts/run.py` first.", 404)
+        if file.suffix != ".md" or not file.is_file():
             return super().do_GET()
-        text = file.read_text(encoding="utf-8")
-        title = next((l[2:] for l in text.splitlines() if l.startswith("# ")), file.name)
+        self.page(file.read_text(encoding="utf-8"))
+
+    def page(self, text, status=200):
+        title = next((l[2:] for l in text.splitlines() if l.startswith("# ")), "job-postings")
         body = PAGE.format(title=html.escape(re.sub(r"[\\*`\[\]]", "", title)), body=markdown(text)).encode()
-        self.send_response(200)
+        self.send_response(status)
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def log_request(self, code="-", size="-"):
+        """Print failed requests only, so that a problem names its address."""
+        if isinstance(code, int) and code >= 400:
+            say(f"{code} {self.path}")
 
     def log_message(self, *args):
         pass
@@ -180,10 +196,16 @@ class Handler(SimpleHTTPRequestHandler):
 def main():
     port = flag("port")
     port = int(port[0]) if isinstance(port, list) else 8000
-    server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
-    say(f"Serving {ROOT} at http://localhost:{port}  (Ctrl-C stops)")
+    try:
+        server = ThreadingHTTPServer(("127.0.0.1", port), Handler)
+    except OSError:
+        raise SystemExit(f"Port {port} is in use: is the server already running in another terminal? "
+                         f"Use that one, or start this one with --port={port + 1}")
+    # 127.0.0.1 rather than localhost: localhost may resolve to IPv6 (::1) first, where nothing listens
+    url = f"http://127.0.0.1:{port}/"
+    say(f"Serving {ROOT} at {url}  (Ctrl-C stops)")
     if flag("open"):
-        webbrowser.open(f"http://localhost:{port}")
+        webbrowser.open(url)
     try:
         server.serve_forever()
     except KeyboardInterrupt:
