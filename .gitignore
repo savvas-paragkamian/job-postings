@@ -1,0 +1,7 @@
+# Saved answers: large (about 14 MB a day), deleted after settings.raw_days
+data/raw/
+data/postings/
+provenance/launchd.*
+__pycache__/
+.DS_Store
+provenance/cron.log

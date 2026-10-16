@@ -1,0 +1,124 @@
+{
+ "total": 18,
+ "jobPostings": [
+  {
+   "title": "User Experience (UX) Designer",
+   "externalPath": "/job/Hinxton-Cambridgeshire/User-Experience--UX--Designer_JR4669-1",
+   "locationsText": "Hinxton, Cambridgeshire",
+   "postedOn": "Posted Today",
+   "bulletFields": [
+    "JR4669"
+   ]
+  },
+  {
+   "title": "Laboratory Animal Technician - Germfree Operations Supervisor",
+   "externalPath": "/job/Heidelberg/Laboratory-Animal-Technician---Germfree-Operations-Supervisor_JR4674",
+   "locationsText": "Heidelberg",
+   "postedOn": "Posted Yesterday",
+   "bulletFields": [
+    "JR4674"
+   ]
+  },
+  {
+   "title": "Head of EMBL-EBI Training",
+   "externalPath": "/job/Hinxton-Cambridgeshire/Head-of-EMBL-EBI-Training_JR3996",
+   "locationsText": "Hinxton, Cambridgeshire",
+   "postedOn": "Posted 2 Days Ago",
+   "bulletFields": [
+    "JR3996"
+   ]
+  }
+ ],
+ "facets": [
+  {
+   "facetParameter": "jobFamilyGroup",
+   "descriptor": "Job Category",
+   "values": [
+    {
+     "descriptor": "IT & Technical",
+     "id": "e80afa7e65f51007291b022a13ce0000",
+     "count": 5
+    },
+    {
+     "descriptor": "Administrative",
+     "id": "e80afa7e65f51007291af283a8890000",
+     "count": 5
+    },
+    {
+     "descriptor": "Research",
+     "id": "e80afa7e65f51007291b04914c520000",
+     "count": 4
+    },
+    {
+     "descriptor": "Scientific Services",
+     "id": "e80afa7e65f51007291aeb24d0c00000",
+     "count": 3
+    }
+   ]
+  },
+  {
+   "facetParameter": "workerSubType",
+   "descriptor": "Job Type",
+   "values": [
+    {
+     "descriptor": "Staff Member (Fixed Term)",
+     "id": "e80afa7e65f510072917c4bbf01e0000",
+     "count": 14
+    },
+    {
+     "descriptor": "Visitor (Fixed Term)",
+     "id": "e80afa7e65f510072917c388531b0000",
+     "count": 2
+    },
+    {
+     "descriptor": "Postdoctoral Fellow (Fixed Term)",
+     "id": "e80afa7e65f510072917c2ee8b290000",
+     "count": 1
+    },
+    {
+     "descriptor": "Supernumerary (Fixed Term)",
+     "id": "e80afa7e65f510072917c17bd7f50000",
+     "count": 1
+    }
+   ]
+  },
+  {
+   "facetParameter": "timeType",
+   "descriptor": "Time Type",
+   "values": [
+    {
+     "descriptor": "Full time",
+     "id": "2c3a740bd631100871e32019ecb90000",
+     "count": 18
+    }
+   ]
+  },
+  {
+   "facetParameter": "locationMainGroup",
+   "values": [
+    {
+     "facetParameter": "locations",
+     "descriptor": "Locations",
+     "values": [
+      {
+       "descriptor": "Hamburg",
+       "id": "e80afa7e65f5100729fada34fcd10000",
+       "count": 1
+      },
+      {
+       "descriptor": "Heidelberg",
+       "id": "e80afa7e65f5100729fac3456e2c0000",
+       "count": 9
+      },
+      {
+       "descriptor": "Hinxton, Cambridgeshire",
+       "id": "e80afa7e65f5100729542eddd1ff0000",
+       "count": 6
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "userAuthenticated": false
+}

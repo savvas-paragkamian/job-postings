@@ -1,0 +1,21 @@
+# job-postings, on cron (Linux and macOS).
+#
+# Every hour from 08:00 to 20:00. The first run of the day that reaches the
+# platforms does the work (about 4 minutes); later ones see that and stop at once
+# (--once-a-day), so a computer that was off or asleep at 08:00 catches up later.
+#
+# Before installing, edit the two paths in the line below:
+#   - a Python 3.11 or newer (`which python3`): /usr/bin/python3 on Ubuntu 24.04 or
+#     Debian 12; on this Mac /Users/talos/miniconda3/bin/python3, because macOS's
+#     own /usr/bin/python3 (3.9) is too old;
+#   - the repository, if it is not in ~/projects/job-postings.
+# Install (adds to your crontab, keeps what is there):
+#   (crontab -l 2>/dev/null; cat cron/job-postings.crontab) | crontab -
+# Check:  crontab -l        Remove: crontab -e, and delete the line.
+#
+# Notifications on Linux use notify-send (package libnotify-bin). cron runs outside
+# the desktop session, so give it the session's message bus: uncomment the next
+# line and put your user id (`id -u`) in place of 1000.
+# DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+
+0 8-20 * * * cd "$HOME/projects/job-postings" && /usr/bin/python3 scripts/run.py --once-a-day >> provenance/cron.log 2>&1

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:ns0="http://a9.com/-/spec/opensearch/1.1/" xmlns:ns1="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+		<ns0:totalResults>13</ns0:totalResults>
+		<title>Job Search RSS</title>
+		<description />
+		<link>https://www.nature.com/naturecareers/jobsrss/?keywords=metagenomics&amp;countrycode=GB</link>
+		<ns1:link href="https://www.nature.com/naturecareers/jobsrss/?keywords=metagenomics&amp;countrycode=GB" rel="self" type="application/rss+xml" />
+		<pubDate>Fri, 16 Oct 2026 13:03:57 +0000</pubDate>
+		<lastBuildDate>Fri, 16 Oct 2026 13:03:57 +0000</lastBuildDate>
+		<generator>Nature Careers</generator>
+		<item>
+			<title>CHUM Microbiome Centre: Post-Doctoral Research Fellow - Microbiome Therapeutics and Cancer Immunotherapy</title>
+			<description>
+Competitive with benefits:
+
+CHUM Microbiome Centre:
+Postdoctoral fellow to develop microbiome-based therapies and understand their mechanism-of-action.
+Montréal, Quebec (CA)
+</description>
+			<link>https://www.nature.com/naturecareers/job/12865176/post-doctoral-research-fellow-microbiome-therapeutics-and-cancer-immunotherapy/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</link>
+			<pubDate>Wed, 30 Sep 2026 04:12:00 +0000</pubDate>
+			<guid isPermaLink="true">https://www.nature.com/naturecareers/job/12865176/post-doctoral-research-fellow-microbiome-therapeutics-and-cancer-immunotherapy/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</guid>
+		</item>
+		<item>
+			<title>Helmholtz Centre for Infection Research (HZI): Postdoctoral Position in Computational Metagenomics (f/m/d)</title>
+			<description>
+E 13 TV EntGO Bund:
+
+Helmholtz Centre for Infection Research (HZI):
+The Helmholtz Centre for Infection Research (HZI) invites applications for a Postdoctoral Position in Computational Metagenomics (f/m/d).
+38124, Brunswick (DE)
+</description>
+			<link>https://www.nature.com/naturecareers/job/12865694/postdoctoral-position-in-computational-metagenomics-f-m-d-/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</link>
+			<pubDate>Wed, 14 Oct 2026 12:16:00 +0000</pubDate>
+			<guid isPermaLink="true">https://www.nature.com/naturecareers/job/12865694/postdoctoral-position-in-computational-metagenomics-f-m-d-/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</guid>
+		</item>
+		<item>
+			<title>Baylor College of Medicine (BCM): Senior Scientific Programmer</title>
+			<description>
+$70,618 - $83,080:
+
+Baylor College of Medicine (BCM):
+Monday - Friday, 8 a.m. - 5 p.m. Summary The Alkek Center for Metagenomics and Microbiome Research Center (CMMR) is an integral part of the Baylor...
+Houston, TX
+</description>
+			<link>https://www.nature.com/naturecareers/job/12863032/senior-scientific-programmer/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</link>
+			<pubDate>Thu, 27 Aug 2026 23:00:00 +0000</pubDate>
+			<guid isPermaLink="true">https://www.nature.com/naturecareers/job/12863032/senior-scientific-programmer/?TrackID=12&amp;utm_source=rss&amp;utm_medium=feed&amp;utm_campaign=general</guid>
+		</item>
+		</channel>
+</rss>

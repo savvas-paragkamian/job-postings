@@ -1,0 +1,47 @@
+{
+ "content": [
+  {
+   "id": 3207,
+   "vacancyTypeId": 3,
+   "gradeId": 4,
+   "siteIds": [
+    1
+   ],
+   "code": "2026-JRC.B.5-SVQ-FGIV-003206",
+   "title": "FG IV - Project Officer - Sustainable Industry",
+   "shortDescription": null,
+   "startDate": 1789543860000,
+   "endDate": 1792274340000,
+   "organizationInstitute": "Circular Economy and Sustainable Industry"
+  },
+  {
+   "id": 3211,
+   "vacancyTypeId": 3,
+   "gradeId": 4,
+   "siteIds": [
+    6
+   ],
+   "code": "2026-JRC.G.5-KRU-FGIV-003210",
+   "title": "FGIV Project Officer - Scientific Research",
+   "shortDescription": null,
+   "startDate": 1789733100000,
+   "endDate": 1792187940000,
+   "organizationInstitute": "Nuclear Science and Innovation for Energy and Health"
+  },
+  {
+   "id": 3215,
+   "vacancyTypeId": 3,
+   "gradeId": 4,
+   "siteIds": [
+    5
+   ],
+   "code": "2026-JRC.G.7-IPR-FGIV-003214",
+   "title": "FGIV - Project Officer - R&D in Optics systems for nuclear safeguards",
+   "shortDescription": null,
+   "startDate": 1789736160000,
+   "endDate": 1792187940000,
+   "organizationInstitute": "Digital Systems for Safeguards  and Non-Proliferation"
+  }
+ ],
+ "totalItems": 17
+}

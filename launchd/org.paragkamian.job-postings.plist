@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  The daily clock: scripts/run.py every morning at 08:30. A Mac that is asleep
+  at 08:30 runs it when it wakes. A run that finds something new posts a macOS
+  notification. Install:
+    cp launchd/org.paragkamian.job-postings.plist ~/Library/LaunchAgents/
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/org.paragkamian.job-postings.plist
+  Run it now:
+    launchctl kickstart -k gui/$(id -u)/org.paragkamian.job-postings
+  Remove:
+    launchctl bootout gui/$(id -u)/org.paragkamian.job-postings
+  The paths assume the repository in ~/projects/job-postings and Python 3.11 or
+  newer at /Users/talos/miniconda3/bin/python3 (see `which python3`; the
+  /usr/bin/python3 of macOS is too old for tomllib). Edit them if not.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.paragkamian.job-postings</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/talos/miniconda3/bin/python3</string>
+    <string>/Users/talos/projects/job-postings/scripts/run.py</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/talos/projects/job-postings</string>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>8</integer>
+    <key>Minute</key>
+    <integer>30</integer>
+  </dict>
+  <key>StandardOutPath</key>
+  <string>/Users/talos/projects/job-postings/provenance/launchd.out</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/talos/projects/job-postings/provenance/launchd.err</string>
+</dict>
+</plist>
