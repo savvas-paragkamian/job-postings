@@ -7,6 +7,7 @@ Run the scripts from anywhere: paths are relative to this repository.
 import csv
 import datetime as dt
 import email.utils
+import gzip
 import hashlib
 import html
 import re
@@ -110,7 +111,10 @@ def http(url, cfg, data=None, headers=None, timeout=60, tries=3):
     for attempt in range(tries):
         try:
             with urllib.request.urlopen(urllib.request.Request(url, data=data, headers=hdrs), timeout=timeout) as r:
-                return r.status, r.read(), ""
+                body = r.read()
+                if r.headers.get("Content-Encoding", "").lower() == "gzip":   # sent unasked (Academic Jobs Online)
+                    body = gzip.decompress(body)
+                return r.status, body, ""
         except urllib.error.HTTPError as e:
             status, body, err = e.code, e.read(), f"HTTP {e.code}"
             if e.code not in (429, 500, 502, 503, 504):

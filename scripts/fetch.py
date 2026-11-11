@@ -17,9 +17,12 @@ LOG_FIELDS = ["source", "query", "page", "url", "status", "items", "seconds", "f
 
 
 def queries_for(source, cfg):
-    """The queries sent to a platform: those of the profiles of its kind, once each."""
+    """The queries sent to a platform: its own `queries` if it has them (the category pages
+    of a Madgex board), else those of the profiles of its kind, once each."""
     if "{query}" not in source["url"]:
         return [""]
+    if "queries" in source:
+        return source["queries"]
     out = []
     for p in cfg["profiles"]:
         if p["kind"] == source["kind"]:

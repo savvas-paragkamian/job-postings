@@ -3,23 +3,25 @@
     python3 -m unittest discover tests      (or: python3 tests/test_scripts.py)
 
 - the keyword rules of config/profiles.toml (whole words, *, capitals, accents, Greek);
-- each platform's reader on a trimmed copy of a real answer (tests/fixtures/, 16 October 2026):
-  if a site changes its pages, save a new answer here and this is where it shows;
+- each platform's reader on a trimmed copy of a real answer (tests/fixtures/, 16 October and
+  11 November 2026): if a site changes its pages, save a new answer here and this is where it shows;
 - scoring with the real config: planted postings that must, and must not, be listed;
 - merging, dates, the watched-page markers, and the local web page (its Markdown,
   and a real server on a free port: pages, the tab icon, a missing page).
 """
+import gzip
 import sys
 import threading
 import unittest
 import urllib.error
 import urllib.request
-from http.server import ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 import sources  # noqa: E402
-from common import FIELDS, Scorer, Terms, iso_date, load_config, same_posting  # noqa: E402
+from common import FIELDS, Scorer, Terms, http, iso_date, load_config, same_posting  # noqa: E402
+from fetch import queries_for  # noqa: E402
 from serve import Handler, markdown  # noqa: E402
 from write import watched_lines  # noqa: E402
 
@@ -27,6 +29,7 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
 CFG = load_config()
 SOURCE = {s["id"]: s for s in CFG["sources"]}
 DATE = "2026-10-16"
+DATE2 = "2026-11-11"     # the answers saved for the platforms added on 11 November 2026
 
 
 def row(**fields):
@@ -58,18 +61,61 @@ class KeywordRules(unittest.TestCase):
 
 
 class Readers(unittest.TestCase):
-    def read(self, kind, source, name):
-        items = getattr(sources, "parse_" + kind)((FIXTURES / name).read_bytes(), SOURCE[source], DATE)
+    def read(self, kind, source, name, date=DATE):
+        items = getattr(sources, "parse_" + kind)((FIXTURES / name).read_bytes(), SOURCE[source], date)
         self.assertTrue(items, f"{name}: nothing read")
         for it in items:
             self.assertTrue(it["title"] and it["url"].startswith("http"), it)
         return items
 
-    def test_nature_rss(self):
-        first = self.read("rss", "nature", "nature.xml")[0]
+    def test_madgex_rss(self):
+        # Nature's keyword RSS of 16 October 2026; Science Careers' RSS has the same (Madgex) format
+        first = self.read("rss", "science", "nature.xml")[0]
         self.assertEqual(first["organisation"], "CHUM Microbiome Centre")      # from "Employer: Title"
         self.assertEqual(first["location"], "Montréal, Quebec (CA)")           # last line of the description
         self.assertNotIn("utm_", first["url"])
+
+    def test_madgex_category_pages(self):
+        items = self.read("madgex", "nature", "madgex_nature.html", DATE2)
+        self.assertEqual(len(items), 3)
+        first = items[0]
+        self.assertTrue(first["organisation"].startswith("Shenzhen Institutes of Advanced Technology"))
+        self.assertEqual(first["url"], "https://www.nature.com/naturecareers/job/12858264/global-recruitment-of-outstanding-young-talents/")
+        self.assertEqual(first["posted"], "2026-11-10")                        # "1 day ago" on the run date
+        the = self.read("madgex", "the", "madgex_the.html", DATE2)[0]
+        self.assertEqual((the["organisation"], the["location"]), ("NEW YORK UNIVERSITY ABU DHABI", "Abu Dhabi, United Arab Emirates"))
+        self.assertTrue(the["url"].startswith("https://www.timeshighereducation.com/unijobs/listing/417536/"))
+        self.assertNotIn("LinkSource", the["url"])
+
+    def test_madgex_pages_are_paths(self):
+        src = SOURCE["nature"]
+        self.assertEqual(sources.request_madgex(src, "postdoctoral", 1)[0], "https://www.nature.com/naturecareers/jobs/postdoctoral/")
+        self.assertEqual(sources.request_madgex(src, "life-science/researcher", 3)[0],
+                         "https://www.nature.com/naturecareers/jobs/life-science/researcher/3/")
+
+    def test_jobs_ac_uk(self):
+        first = self.read("jobs_ac_uk", "jobs-ac-uk", "jobs_ac_uk.html", DATE2)[0]
+        self.assertEqual((first["organisation"], first["location"]), ("Durham University", "Durham"))
+        self.assertEqual(first["notes"], "£39,560 to £46,970 per annum")
+        self.assertEqual(first["summary"], "Department of Biosciences")
+        self.assertEqual((first["posted"], first["deadline"]), ("2026-11-10", "2026-11-23"))   # "10 Nov", "23 Nov"
+
+    def test_jobrxiv_search_feed(self):
+        items = self.read("rss", "jobrxiv", "jobrxiv.xml", DATE2)
+        self.assertEqual((items[1]["organisation"], items[1]["location"]), ("University of British Columbia Faculty", "Canada"))
+
+    def test_fems_employer_after_dash(self):
+        first = self.read("rss", "fems", "fems.xml", DATE2)[0]
+        self.assertEqual(first["organisation"], "University of Birmingham")
+        self.assertFalse(first["title"].endswith("Birmingham"))
+
+    def test_mpg(self):
+        self.assertTrue(all(i["organisation"] == "Max Planck Society" for i in self.read("rss", "mpg", "mpg.xml", DATE2)))
+
+    def test_academic_jobs_online_rss1(self):
+        first = self.read("rss", "ajo", "ajo.xml", DATE2)[0]                      # RSS 1.0 (RDF), the board's own fields
+        self.assertEqual((first["organisation"], first["location"], first["deadline"]), ("SISSA", "Trieste, IT", "2026-12-23"))
+        self.assertEqual(first["url"], "https://academicjobsonline.org/ajo/SISSA/Physics%20Area/33399")
 
     def test_euraxess_jobs(self):
         first = self.read("euraxess", "euraxess", "euraxess_jobs.html")[0]
@@ -148,6 +194,42 @@ class Merging(unittest.TestCase):
 
 
 class Helpers(unittest.TestCase):
+    def test_day_month_without_year(self):
+        # jobs.ac.uk writes "10 Nov": placed on or before the run date, closing from a month before it on
+        self.assertEqual(sources.day_month("10 Nov", "2026-11-11", closing=False), "2026-11-10")
+        self.assertEqual(sources.day_month("23 Dec", "2026-01-05", closing=False), "2025-12-23")
+        self.assertEqual(sources.day_month("5 Jan", "2026-12-20", closing=True), "2027-01-05")
+        self.assertEqual(sources.day_month("8 Nov", "2026-11-11", closing=True), "2026-11-08")
+        self.assertEqual(sources.day_month("soon", "2026-11-11", closing=True), "")
+
+    def test_queries_per_platform(self):
+        self.assertEqual(queries_for(SOURCE["nature"], CFG), SOURCE["nature"]["queries"])     # its own category pages
+        self.assertIn("metagenomics", queries_for(SOURCE["jobrxiv"], CFG))                    # the profiles' queries
+        self.assertNotIn("postdoctoral fellowship", queries_for(SOURCE["jobrxiv"], CFG))      # a funding query
+        self.assertEqual(queries_for(SOURCE["mpg"], CFG), [""])                                # a whole feed
+
+    def test_gzip_answer(self):
+        # Academic Jobs Online sends gzip without being asked; the saved answer must be plain XML
+        class Gzip(BaseHTTPRequestHandler):
+            def do_GET(self):
+                body = gzip.compress(b"<rss><channel></channel></rss>")
+                self.send_response(200)
+                self.send_header("Content-Encoding", "gzip")
+                self.send_header("Content-Length", str(len(body)))
+                self.end_headers()
+                self.wfile.write(body)
+
+            def log_message(self, *args):
+                pass
+        server = ThreadingHTTPServer(("127.0.0.1", 0), Gzip)
+        threading.Thread(target=server.serve_forever, daemon=True).start()
+        try:
+            status, body, err = http(f"http://127.0.0.1:{server.server_address[1]}/", CFG, tries=1)
+            self.assertEqual((status, body, err), (200, b"<rss><channel></channel></rss>", ""))
+        finally:
+            server.shutdown()
+            server.server_close()
+
     def test_dates(self):
         for text, iso in [("Wed, 14 Oct 2026 12:16:00 +0000", "2026-10-14"), ("28 Oct 2026 - 18:00 (Europe/Paris)", "2026-10-28"),
                           ("1 December 2026", "2026-12-01"), ("2027-01-14T00:00:00.000+0000", "2027-01-14"), ("soon", "")]:

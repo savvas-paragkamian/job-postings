@@ -52,8 +52,8 @@ funding = ["PhD scholarship*", "PhD fellowship*", "PhD studentship*", "doctoral 
 
 # ---------------------------------------------------------------------------
 # Profiles: five ways the CV reads to an employer or a funder. `queries` are
-# sent to the platforms that search (EURAXESS, Nature, Science, THE, EU Funding
-# & Tenders); `keywords` score every posting, whichever platform it came from.
+# sent to the platforms that search (EURAXESS, Science, jobs.ac.uk, jobRxiv, EU
+# Funding & Tenders); `keywords` score every posting, whichever platform it came from.
 # `cv` says why the profile fits and is printed above its list; `example` is
 # the posting in examples/ that it was modelled on. Left out on purpose, after
 # the first run listed antibody design and cognitive science: "AI", "machine
@@ -147,15 +147,17 @@ require = ["biodiversity", "ecolog*", "soil*", "microb*", "species", "nature", "
 # ---------------------------------------------------------------------------
 # Platforms. `type` names the code in scripts/sources.py that asks and reads
 # them. A url with {query} is sent once for each query of the profiles of the
-# same kind, page by page ({page} counts from 1, {page0} from 0) until a page
-# adds nothing new or `pages` is reached. A url without {query} is read whole
-# and every posting in it is scored.
+# same kind, or for each of the platform's own `queries` if it has them (category
+# pages on Nature and THE), page by page ({page} counts from 1, {page0} from 0)
+# until a page adds nothing new or `pages` is reached. A url without {query} is
+# read whole and every posting in it is scored.
 #   score = false   list every new posting, unscored (Greek-language feeds,
 #                   where English keywords cannot judge a title); with `keep`,
 #                   only titles that contain one of its words
 #   min_score = n   overrides settings.min_score for postings from this platform
-# Checked by hand on 16 October 2026; README.md says why each one is here and
-# which platforms were tried and left out.
+# Checked by hand on 16 October 2026, and again on 11 November 2026 against
+# robots.txt, with the boards that callaband.github.io/microbiome-faculty-jobs reads;
+# README.md says why each one is here and which platforms were tried and left out.
 # ---------------------------------------------------------------------------
 
 [[sources]]
@@ -170,10 +172,11 @@ pages = 2
 id = "nature"
 name = "Nature Careers"
 kind = "job"
-type = "rss"
-url = "https://www.nature.com/naturecareers/jobsrss/?keywords={query}&page={page}"
-title_has_employer = true    # titles read "Employer: Job title"
-pages = 2
+type = "madgex"
+url = "https://www.nature.com/naturecareers/jobs/{query}/"
+queries = ["postdoctoral", "life-science/researcher", "environmental-science/researcher"]
+pages = 15                   # 20 a page; "postdoctoral" had 14 pages on 11 November 2026. Its robots.txt
+                             # disallows the keyword RSS used before (/naturecareers/jobsrss/), not these pages
 
 [[sources]]
 id = "science"
@@ -188,10 +191,49 @@ pages = 1
 id = "the"
 name = "Times Higher Education jobs"
 kind = "job"
-type = "rss"
-url = "https://www.timeshighereducation.com/unijobs/jobsrss/?keywords={query}&page={page}"
-title_has_employer = true
+type = "madgex"
+url = "https://www.timeshighereducation.com/unijobs/listings/{query}/"
+queries = ["research-related"]   # postdoc, research fellow and research associate posts, every subject
+pages = 8                    # 6 pages on 11 November 2026; robots.txt disallows THE's job RSS, not this
+
+[[sources]]
+id = "jobs-ac-uk"
+name = "jobs.ac.uk"
+kind = "job"
+type = "jobs_ac_uk"
+url = "https://www.jobs.ac.uk/search/?keywords={query}&sortOrder=1&pageSize=100"
 pages = 1
+
+[[sources]]
+id = "jobrxiv"
+name = "jobRxiv"
+kind = "job"
+type = "rss"
+url = "https://jobrxiv.org/?feed=job_feed&search_keywords={query}&posts_per_page=50"
+pages = 1                    # the board's search as RSS, with employer and country
+
+[[sources]]
+id = "fems"
+name = "FEMS jobs (microbiology)"
+kind = "job"
+type = "rss"
+url = "https://fems-microbiology.org/categories/jobs/feed/"
+title_employer_after = " – "   # some titles read "Job title – Employer"
+
+[[sources]]
+id = "mpg"
+name = "Max Planck Society"
+kind = "job"
+type = "rss"
+url = "https://www.mpg.de/feeds/jobs.rss"
+organisation = "Max Planck Society"
+
+[[sources]]
+id = "ajo"
+name = "Academic Jobs Online"
+kind = "job"
+type = "rss"
+url = "https://academicjobsonline.org/ajo?joblist-0-0-0-----rss--"   # every open advert, about 360, 2 MB
 
 [[sources]]
 id = "embl"

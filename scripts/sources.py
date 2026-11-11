@@ -14,7 +14,8 @@ import xml.etree.ElementTree as ET
 
 from common import FIELDS, clean, iso_date, strip_tracking
 
-EXTENSION = {"rss": "xml", "euraxess": "html", "workday": "json", "jrc": "json", "eu_funding": "json"}
+EXTENSION = {"rss": "xml", "euraxess": "html", "workday": "json", "jrc": "json", "eu_funding": "json",
+             "madgex": "html", "jobs_ac_uk": "html"}
 
 
 def posting(**fields):
@@ -27,19 +28,51 @@ def fill(template, query, page):
     return template.format(query=urllib.parse.quote(query), page=page, page0=page - 1)
 
 
-# --- RSS: Nature Careers, Science Careers, THE (search feeds); HCMR, HFRI (whole feeds) --
+def day_month(text, date, closing):
+    """'10 Nov', written without a year, as YYYY-MM-DD: the date placed is the latest such day
+    up to `date`; a closing date is the next one from a month before `date` on."""
+    m = re.match(r"(\d{1,2})\s+([A-Za-z]{3})", (text or "").strip())
+    if not m:
+        return ""
+    today = dt.date.fromisoformat(date)
+    for year in ([today.year, today.year + 1] if closing else [today.year, today.year - 1]):
+        try:
+            day = dt.datetime.strptime(f"{m[1]} {m[2].title()} {year}", "%d %b %Y").date()
+        except ValueError:
+            return ""
+        if (day >= today - dt.timedelta(days=31)) if closing else (day <= today + dt.timedelta(days=1)):
+            return day.isoformat()
+    return ""
+
+
+# --- RSS: Science Careers, jobRxiv (search feeds); HCMR, HFRI, FEMS, Max Planck, ------
+# --- Academic Jobs Online (whole feeds) ------------------------------------------------
 
 def request_rss(source, query, page):
     return fill(source["url"], query, page), None, {}
 
 
+def local(tag):
+    return tag.rsplit("}", 1)[-1]
+
+
 def parse_rss(body, source, date):
+    """RSS 2.0 and RSS 1.0 (RDF). Besides title, link and description, some boards add their
+    own fields, read here by name whatever their namespace: company and location (jobRxiv);
+    Univ, City, Country and Deadline (Academic Jobs Online)."""
     out = []
-    for item in ET.fromstring(body).iter("item"):
-        title, org = clean(item.findtext("title")), source.get("organisation", "")
-        lines = [line.strip() for line in (item.findtext("description") or "").splitlines() if line.strip()]
+    for item in (e for e in ET.fromstring(body).iter() if local(e.tag) == "item"):
+        f = {}
+        for child in item:
+            f.setdefault(local(child.tag), (child.text or "").strip())
+        title = clean(f.get("title"))
+        org = source.get("organisation") or f.get("company") or f.get("Univ") or ""
+        lines = [line.strip() for line in (f.get("description") or "").splitlines() if line.strip()]
         notes = ""
-        location = ""
+        location = f.get("location") or ", ".join(filter(None, [f.get("City"), f.get("Country")]))
+        sep = source.get("title_employer_after")
+        if sep and sep in title:
+            title, org = title.rsplit(sep, 1)      # FEMS: "Job title – Employer"
         if source.get("title_has_employer"):
             # Madgex boards: title "Employer: Job title";
             # description "Salary:", "Employer:", text lines, and the place as the last line
@@ -49,9 +82,62 @@ def parse_rss(body, source, date):
                 notes, lines = lines[0][:-1], lines[2:]
             if len(lines) >= 2:
                 location, lines = lines[-1], lines[:-1]
-        url = strip_tracking(item.findtext("link"))
+        url = strip_tracking(f.get("link"))
         out.append(posting(uid=url, title=title, organisation=org, location=location, notes=notes, url=url,
-                           posted=iso_date(item.findtext("pubDate")), summary=clean(" ".join(lines))))
+                           posted=iso_date(f.get("pubDate") or f.get("date")), deadline=iso_date(f.get("Deadline")),
+                           summary=clean(" ".join(lines))))
+    return out
+
+
+# --- Madgex category pages: Nature Careers, Times Higher Education ---------------------
+# Their robots.txt disallows the keyword RSS feeds and searches, not the category pages
+# (/naturecareers/jobs/postdoctoral/, /unijobs/listings/research-related/), page n at <url>n/.
+
+def request_madgex(source, query, page):
+    return fill(source["url"], query, page) + (f"{page}/" if page > 1 else ""), None, {}
+
+
+def parse_madgex(body, source, date):
+    """One <li class="lister__item"> per job: title and link, place, employer, salary, the
+    first words of the advert, and "3 days ago" (promoted jobs have no age)."""
+    out = []
+    for item in re.split(r'<li class="lister__item\b', body.decode("utf-8", "replace"))[1:]:
+        item = item.split("js-shortlist-form")[0]          # the rest belongs to the page, not the job
+        head = re.search(r'class="lister__header">\s*<a\s+href="\s*([^"?]+)[^"]*"[^>]*>(.*?)</a>', item, re.S)
+        if not head:
+            continue
+        meta = lambda kind: clean((re.search(rf'lister__meta-item--{kind}"[^>]*>(.*?)</li>', item, re.S) or ["", ""])[1])
+        desc = re.search(r'class="lister__description[^"]*">(.*?)</p>', item, re.S)
+        age = re.search(r'job-actions__action pipe">\s*(\d+) days? ago', item)
+        url = urllib.parse.urljoin(source["url"], head[1].strip())
+        out.append(posting(uid=url, title=clean(head[2]), organisation=meta("recruiter"), location=meta("location"),
+                           notes=meta("salary"), url=url, summary=clean(desc[1]) if desc else "",
+                           posted=(dt.date.fromisoformat(date) - dt.timedelta(days=int(age[1]))).isoformat() if age else ""))
+    return out
+
+
+# --- jobs.ac.uk: UK and European universities (search page per query) ------------------
+
+request_jobs_ac_uk = request_rss
+
+
+def parse_jobs_ac_uk(body, source, date):
+    """One <div class="j-search-result__result"> per job: title, department, employer, place,
+    salary, "Date Placed: 10 Nov" and "Closes 23 Nov" (no years: see day_month)."""
+    out = []
+    for item in re.split(r'class="j-search-result__result[\s"]', body.decode("utf-8", "replace"))[1:]:
+        link = re.search(r'<a href="(/job/[^"]+)"[^>]*>(.*?)</a>', item, re.S)
+        if not link:
+            continue
+        part = lambda pattern: clean((re.search(pattern, item, re.S) or ["", ""])[1])
+        url = urllib.parse.urljoin("https://www.jobs.ac.uk", link[1])
+        out.append(posting(uid=url, title=clean(link[2]), url=url,
+                           organisation=part(r'j-search-result__employer">(.*?)</div>'),
+                           location=part(r"<div>Location:(.*?)</div>"),
+                           notes=part(r"Salary:\s*</strong>(.*?)</div>"),
+                           posted=day_month(part(r"Date Placed:\s*</strong>(.*?)</div>"), date, closing=False),
+                           deadline=day_month(part(r'date--blue[^"]*">(.*?)</span>'), date, closing=True),
+                           summary=part(r'j-search-result__department">(.*?)</div>')))
     return out
 
 
