@@ -1,6 +1,6 @@
 # job-postings
 
-Job and funding alerts that fit one CV. Every morning, scripts search ten platforms
+Job and funding alerts that fit one CV. Every morning, scripts search thirteen platforms
 for postings and calls, score each against five profiles drawn from the CV of
 Savvas Paragkamian, keep what fits, and write Markdown pages. A small local web
 server then shows those pages in the browser. A desktop notification (macOS or
@@ -53,21 +53,46 @@ near-misses were generic AI, finance and computer-networks posts (see AGENTS.md)
 ## Platforms
 
 Each platform below was checked by hand on 16 October 2026 and answered a script
-without a key or a login. `type` in the config names the code in
-`scripts/sources.py` that talks to it.
+without a key or a login. On 11 November 2026 each was checked again against its
+robots.txt, and the postdoc boards were added (below). `type` in the config names
+the code in `scripts/sources.py` that talks to it.
 
 | Platform | What it adds | How it is read | Kind |
 |---|---|---|---|
-| [EURAXESS](https://euraxess.ec.europa.eu/jobs/search) | the EU's research jobs portal; also carries AcademicTransfer (Dutch universities, WUR), THE and Academic Positions | search page per query, 2 pages, HTML read by `parse_euraxess` | jobs |
-| [Nature Careers](https://www.nature.com/naturecareers) | academic and industry science posts worldwide | RSS search feed per query, 2 pages | jobs |
+| [Nature Careers](https://www.nature.com/naturecareers/jobs/postdoctoral/) | academic and industry science posts worldwide | category pages, in full: every postdoc post, and research posts in life and environmental science (about 23 pages), HTML read by `parse_madgex` | jobs |
 | [Science Careers](https://jobs.sciencecareers.org) | AAAS board, strong in North America | RSS search feed per query | jobs |
-| [Times Higher Education jobs](https://www.timeshighereducation.com/unijobs/) | universities, UK and worldwide | RSS search feed per query | jobs |
+| [Times Higher Education jobs](https://www.timeshighereducation.com/unijobs/listings/research-related/) | universities, UK and worldwide | category page "research-related" in full: postdoc, fellow and research associate posts in every subject (about 6 pages) | jobs |
+| [jobs.ac.uk](https://www.jobs.ac.uk) | UK and European universities, with salary and closing date | search page per query (25 results), HTML read by `parse_jobs_ac_uk` | jobs |
+| [jobRxiv](https://jobrxiv.org) | non-profit science board, many postdocs; employer and country | the board's search as RSS, per query (50 results) | jobs |
+| [FEMS jobs](https://fems-microbiology.org/opportunities/) | microbiology only, mostly PhD and postdoc posts | RSS, the latest 10 | jobs |
+| [Max Planck Society](https://www.mpg.de/jobboard) | every Max Planck institute | RSS, the latest 30 | jobs |
+| [Academic Jobs Online](https://academicjobsonline.org/ajo/jobs) | about 360 adverts with deadlines; mostly physics and mathematics, but also US postdocs in microbiome and plant-microbe science | one RSS 1.0 feed (2 MB), every advert scored | jobs |
 | [EMBL and EMBL-EBI](https://www.embl.org/jobs/) | all six EMBL sites | the JSON behind their Workday site, every post, titles scored | jobs |
 | [JRC](https://recruitment.jrc.ec.europa.eu/) | the Commission's Joint Research Centre (EU Soil Observatory, Land and Climate) | the portal's JSON, every vacancy; one keyword is enough | jobs |
 | [HCMR calls](https://calls.hcmr.gr/category/job-opportunities/) | the home institute, in Greek | RSS, listed in full (calls and hirings only) | jobs |
 | [EU Funding & Tenders](https://ec.europa.eu/info/funding-tenders/opportunities/portal/) | Horizon Europe (MSCA, ERC, Missions, Cluster 6), LIFE, and open calls of EU projects | the portal's search API, open and forthcoming only | funding |
-| [EURAXESS funding](https://euraxess.ec.europa.eu/funding/search) | fellowships and grants worldwide | search page per query | funding |
 | [HFRI (ELIDEK)](https://www.elidek.gr/) | the Greek national funder | RSS, listed in full (calls and posts only) | funding |
+| [EURAXESS](https://euraxess.ec.europa.eu/jobs) jobs and funding | the EU's research portal: jobs, and fellowships and grants worldwide; carried AcademicTransfer, Academic Positions and many Italian and French posts | **off** since 11 November 2026 (below); search page per query, read by `parse_euraxess` | jobs, funding |
+
+**Where the new boards came from.** jobs.ac.uk, jobRxiv, FEMS and Max Planck are
+among the boards read every day by [Microbiome Faculty Jobs](https://callaband.github.io/microbiome-faculty-jobs/),
+a list of faculty posts in microbiome science; its collector
+([config/sources.yaml](https://github.com/callaband/microbiome-faculty-jobs/blob/main/config/sources.yaml))
+obeys robots.txt, and showed which route each board allows. Academic Jobs Online
+is on its "where else to look" list. Here they are read for postdocs: by search
+where the board has one, and scored with the same five profiles.
+
+**robots.txt.** Nature's and THE's robots.txt disallow their keyword RSS
+(`/naturecareers/jobsrss/`, `/unijobs/jobsrss/`), which this project read until
+11 November 2026, but not their category pages. For a postdoc search these are the
+better route anyway: every postdoc post on the board is read and scored, not only
+what a keyword search ranks first. EURAXESS changed its robots.txt on 10 November
+2026 to disallow `/jobs/*` and every URL with parameters: its job search, its
+funding search and the job pages. There is no allowed route, so both EURAXESS
+sources have `enabled = false`. Ask support@euraxess.org for permission or an export
+of the job offers, and switch them on again only with their agreement. Until then
+the postings found only there are missing: 62 of the 267 that had fitted by
+11 November, 36 of them still open, mostly in Italy and France.
 
 Six pages without a feed are **watched**: the SFI Complexity Postdoctoral
 Fellowship, ERC Starting Grant, MSCA Postdoctoral Fellowships, EMBO Postdoctoral
@@ -78,16 +103,26 @@ the new lines (for example SFI's "Opens Jul 26 2027 …").
 **Tried and left out.**
 - LinkedIn, Indeed and Glassdoor have no public API and forbid scraping.
 - ELIXIR's and GBIF's job pages answer scripts with 403 (Cloudflare).
-- No working feed was found for jobs.ac.uk; its posts reach Nature and THE.
-- AcademicTransfer and Academic Positions arrive through EURAXESS.
+- AcademicTransfer (Dutch universities, where the WUR example was posted): its
+  search is drawn in the browser, and robots.txt closes its API host to scripts.
+- Academic Positions refused the Microbiome Faculty Jobs collector (403), and
+  Academics.com's terms forbid automated reading; both reached this project through
+  EURAXESS while it was on.
+- Helmholtz disallows every URL with parameters; University Positions disallows its
+  RSS, and its postdoc page held 8 posts; no machine-readable search was found for
+  Jobbnorge.
 - New Scientist Jobs has closed.
 - ecoevojobs.net is a US spreadsheet, and Research Professional needs a subscription.
 - HFRI's calls page is drawn in the browser, so its feed is used instead.
 
-**Two details that took finding out.** EURAXESS has no RSS: its search form posts
-and redirects to `?f[0]=keywords:<query>`, the address the config uses. The EU
-portal's API reads its filters only from a multipart form; a URL-encoded form is
-silently ignored and returns all 32,000 records.
+**Details that took finding out.** EURAXESS has no RSS: its search form posts
+and redirects to `?f[0]=keywords:<query>`, the address the config keeps for when
+it is on. The EU portal's API reads its filters only from a multipart form; a
+URL-encoded form is silently ignored and returns all 32,000 records. Madgex boards
+(Nature, THE) number their category pages in the path (`/postdoctoral/2/`), and a
+page past the last repeats the last one, which ends the paging. jobs.ac.uk writes
+its dates without a year ("Closes 23 Nov"). Academic Jobs Online sends gzip even
+when not asked, and `common.http` unpacks it.
 
 ## How a posting is chosen
 
@@ -127,13 +162,15 @@ You can add a query or keyword, add a watched page (`[[watch]]` with `url`,
 `start`, `end`), or add a platform. A platform with an RSS feed only needs a
 `[[sources]]` block of `type = "rss"`; a new kind of platform needs a
 `request_<type>` and a `parse_<type>` in `scripts/sources.py`, plus a saved answer
-and a test in `tests/`.
+and a test in `tests/`. Check the platform's robots.txt first. `enabled = false`
+switches a platform off; `queries` in a platform's block replaces the profiles'
+queries (on Nature and THE they are category paths).
 
 ## Files
 
 | Path | Contents |
 |---|---|
-| `config/profiles.toml` | settings, exclusions, the five profiles, ten platforms, six watched pages |
+| `config/profiles.toml` | settings, exclusions, the five profiles, fifteen platforms (two off), six watched pages |
 | `scripts/common.py` | shared helpers: dates, HTTP, text, keyword rules (`Terms`), scoring (`Scorer`), CSV |
 | `scripts/sources.py` | one `request_` and one `parse_` function per kind of platform |
 | `scripts/fetch.py` | step 1: ask every platform, save each answer in `data/raw/<date>/`, with `fetch.csv` |
@@ -197,12 +234,16 @@ labelled as written by an AI assistant, and the index links to it. Nothing in
 
 ## Limits
 
-- Searches return what each platform ranks first: two pages a query on EURAXESS and
-  Nature, one elsewhere. A daily run catches new posts, but a quiet query can miss
-  an old one.
+- Searches return what each platform ranks first: one page a query (20 on Science,
+  25 on jobs.ac.uk, 50 on jobRxiv). A daily run catches new posts, but a quiet query
+  can miss an old one. Nature and THE are read in full, by category instead.
 - EMBL and JRC lists give titles only; the JRC also gives its unit's name. A
-  vaguely titled post ("Project Officer") is scored on little text.
-- RSS boards give a short summary and no deadline. The deadline is on the posting.
+  vaguely titled post ("Project Officer") is scored on little text. Nature and THE
+  category pages give the first two lines of the advert.
+- Most boards give no deadline (Academic Jobs Online and jobs.ac.uk do). The
+  deadline is on the posting.
+- Long adverts (Academic Jobs Online, jobRxiv) reach the score of 3 more easily
+  through general words in the text ("policy", "monitoring", "data scientist").
 - HTML pages change. When a platform returns nothing at all, the log's warnings
   say so. Save a fresh answer in `tests/fixtures/` and the tests show which reader broke.
 - Scores are keyword counts, not judgement. The profiles, `require` and the

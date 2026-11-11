@@ -52,8 +52,9 @@ funding = ["PhD scholarship*", "PhD fellowship*", "PhD studentship*", "doctoral 
 
 # ---------------------------------------------------------------------------
 # Profiles: five ways the CV reads to an employer or a funder. `queries` are
-# sent to the platforms that search (EURAXESS, Science, jobs.ac.uk, jobRxiv, EU
-# Funding & Tenders); `keywords` score every posting, whichever platform it came from.
+# sent to the platforms that search (Science, jobs.ac.uk, jobRxiv, EU Funding &
+# Tenders; EURAXESS when it is on); `keywords` score every posting, whichever
+# platform it came from.
 # `cv` says why the profile fits and is printed above its list; `example` is
 # the posting in examples/ that it was modelled on. Left out on purpose, after
 # the first run listed antibody design and cognitive science: "AI", "machine
@@ -155,6 +156,7 @@ require = ["biodiversity", "ecolog*", "soil*", "microb*", "species", "nature", "
 #                   where English keywords cannot judge a title); with `keep`,
 #                   only titles that contain one of its words
 #   min_score = n   overrides settings.min_score for postings from this platform
+#   enabled = false  the platform is not asked (its reader and tests stay)
 # Checked by hand on 16 October 2026, and again on 11 November 2026 against
 # robots.txt, with the boards that callaband.github.io/microbiome-faculty-jobs reads;
 # README.md says why each one is here and which platforms were tried and left out.
@@ -167,6 +169,9 @@ kind = "job"
 type = "euraxess"
 url = "https://euraxess.ec.europa.eu/jobs/search?f%5B0%5D=keywords%3A{query}&page={page0}"
 pages = 2
+enabled = false              # off since 11 November 2026: its robots.txt (changed 10 November) disallows
+                             # /jobs/* and every URL with parameters. Ask support@euraxess.org for
+                             # permission or an export; set true again only with their agreement
 
 [[sources]]
 id = "nature"
@@ -279,6 +284,7 @@ kind = "funding"
 type = "euraxess"
 url = "https://euraxess.ec.europa.eu/funding/search?f%5B0%5D=keywords%3A{query}&page={page0}"
 pages = 1
+enabled = false              # off since 11 November 2026, as EURAXESS jobs above
 
 [[sources]]
 id = "hfri"

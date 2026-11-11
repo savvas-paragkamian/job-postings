@@ -226,7 +226,7 @@ def main():
     write_csv(ROOT / "data" / "runs.csv", runs, RUN_FIELDS)
     md = ["# Job postings and funding calls", "",
           f"Alerts for the {len(cfg['profiles'])} profiles in [config/profiles.toml](config/profiles.toml), built by scripts "
-          f"from {len(cfg['sources'])} platforms and {len(cfg.get('watch', []))} watched pages. **[Open now](open.md)** has "
+          f"from {sum(src.get('enabled', True) for src in cfg['sources'])} platforms and {len(cfg.get('watch', []))} watched pages. **[Open now](open.md)** has "
           "everything that can still be applied for; how it works is in [README.md](README.md).", "",
           "| Date | Postings | Funding calls | Listed in full | Pages changed | Digest | Log | Notes |", "|---|---|---|---|---|---|---|---|"]
     for r in runs:

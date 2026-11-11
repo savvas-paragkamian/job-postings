@@ -1,7 +1,24 @@
 # Saved answers: large (about 14 MB a day), deleted after settings.raw_days
 data/raw/
 data/postings/
+
+# What the clocks print
 provenance/launchd.*
-__pycache__/
-.DS_Store
 provenance/cron.log
+
+# Claude Code: worktrees are separate checkouts of this repository, and
+# settings.local.json holds one person's permissions. The job-fit skill
+# (.claude/skills/) stays tracked.
+.claude/worktrees/
+.claude/settings.local.json
+
+# Python, editors, operating systems
+__pycache__/
+*.py[cod]
+.venv/
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
