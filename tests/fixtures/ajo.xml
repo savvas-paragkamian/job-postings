@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:admin="http://webns.net/mvcb/"
+ xmlns:ads="https://academicjobsonline.org/ajo/ads.rss"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+>
+
+<channel rdf:about="https://academicjobsonline.org/ajo">
+<title>Academicjobsonline.org Job Listing</title>
+<link>https://academicjobsonline.org/ajo</link>
+<description>Academicjobsonline.org Job Listing</description>
+<dc:language>en-us</dc:language>
+<dc:rights>(c) Copyright 2026 AcademicJobsOnline.Org. All Rights Reserved.</dc:rights>
+<dc:date>2026-11-11T05:46:30-05:00</dc:date>
+<dc:publisher>academicjobsonline.org</dc:publisher>
+<syn:updateBase>2026-01-01T12:00:00-05:00</syn:updateBase>
+<syn:updateFrequency>1</syn:updateFrequency>
+<syn:updatePeriod>daily</syn:updatePeriod>
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="https://academicjobsonline.org/ajo/SISSA/Physics%20Area/33399?rss" />
+  <rdf:li rdf:resource="https://academicjobsonline.org/ajo/ITPCAS/Personnel%20Office/33398?rss" />
+ </rdf:Seq>
+</items>
+</channel>
+<item rdf:about="https://academicjobsonline.org/ajo/SISSA/Physics%20Area/33399?rss">
+<title>Postdoctoral IFPU Fellowship</title>
+<link>https://academicjobsonline.org/ajo/SISSA/Physics%20Area/33399?rss</link>
+<description>The Institute for Fundamental Physics of the Universe (IFPU,
+   https://www.ifpu.it/), located in Trieste, Italy, is pleased to invite
+   applications for postdoctoral research positions starting Fall 2027.
+   IFPU is a collaborative initiative between the International School
+   for Advanced Studies (SISSA, https://www.sissa.it/), the Abdus Salam
+   International Centre for Theoretical Physics (ICTP,
+   https://www.ictp.it/), and the National Institute for Astrophysics
+   (INAF; Trieste Observatory (https://www.oats.inaf.it/index.php/en/)
+   with the extra support of the Italian Institute ...</description>
+<dc:creator>SISSA, Physics Area</dc:creator>
+<dc:date>2026-11-11T02:58:02-05:00</dc:date>
+<ads:Zip>34136</ads:Zip>
+<ads:ID>33399</ads:ID>
+<ads:PostDate>Wed, 11 Nov 2026 12:00:00 EST</ads:PostDate>
+<ads:EndDate>Tue, 11 May 2027 12:00:00 EDT</ads:EndDate>
+<ads:Apply>https://academicjobsonline.org/ajo/jobs/33399/apply?rss</ads:Apply>
+<ads:Country>IT</ads:Country>
+<ads:Disciplines>Astrophysics; Cosmology and Astroparticle Physics</ads:Disciplines>
+<ads:Dept>Physics Area</ads:Dept>
+<ads:City>Trieste</ads:City>
+<ads:State>Friuli-Venezia Giulia</ads:State>
+<ads:Tag>APGIFPU</ads:Tag>
+<ads:Deadline>Wed, 23 Dec 2026 23:59:59 EST</ads:Deadline>
+<ads:Univ>SISSA</ads:Univ>
+</item>
+<item rdf:about="https://academicjobsonline.org/ajo/ITPCAS/Personnel%20Office/33398?rss">
+<title>Postdoctoral Positions Available in 2027</title>
+<link>https://academicjobsonline.org/ajo/ITPCAS/Personnel%20Office/33398?rss</link>
+<description>The Institute of Theoretical Physics at the Chinese Academy of Sciences
+   (ITP-CAS) (https://english.itp.cas.cn) is calling for application for
+   a few postdoctoral fellow positions in 2027. Research areas include
+   but not limited to: 1) Theoretical particle physics and nuclear
+   physics, 2) Quantum field theory and superstring theory, 3)
+   Gravitational theory, astrophysics and cosmology, 4) Statistical
+   physics, theoretical biophysics and bioinformatics, 5) Condensed
+   matter theory, 6) Quantum physics, quantum information and interaction
+   between light and matter, 7) Plasma, ...</description>
+<dc:creator>Institute of Theoretical Physics, Chinese Academy of Sciences, Personnel Office</dc:creator>
+<dc:date>2026-11-10T22:11:52-05:00</dc:date>
+<ads:ID>33398</ads:ID>
+<ads:Zip>100190</ads:Zip>
+<ads:EndDate>Sun, 28 Feb 2027 12:00:00 EST</ads:EndDate>
+<ads:PostDate>Tue, 10 Nov 2026 12:00:00 EST</ads:PostDate>
+<ads:Country>CN</ads:Country>
+<ads:Apply></ads:Apply>
+<ads:Dept>Personnel Office</ads:Dept>
+<ads:Disciplines>Theoretical Physics</ads:Disciplines>
+<ads:State>Beijing</ads:State>
+<ads:City>Beijing</ads:City>
+<ads:Univ>Institute of Theoretical Physics, Chinese Academy of Sciences</ads:Univ>
+<ads:Deadline>Wed, 10 Feb 2027 23:59:59 EST</ads:Deadline>
+<ads:Tag>SRA</ads:Tag>
+</item>
+</rdf:RDF>

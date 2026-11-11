@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	xmlns:media="http://search.yahoo.com/mrss/" xmlns:job_listing="https://jobrxiv.org"
+>
+
+<channel>
+	<title>Search Results for &#8220;microbiome&#8221; &#8211; jobRxiv</title>
+	<atom:link href="https://jobrxiv.org/?feed=job_feed&#038;search_keywords=microbiome&#038;posts_per_page=50" rel="self" type="application/rss+xml" />
+	<link>https://jobrxiv.org</link>
+	<description>Keeping research funds for research</description>
+	<lastBuildDate>Wed, 11 Nov 2026 06:03:19 +0000</lastBuildDate>
+	<language>en-GB</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=7.1.4</generator>
+
+<image>
+	<url>https://jobrxiv.org/wp-content/uploads/2019/06/favicon-100x100.png</url>
+	<title>Search Results for &#8220;microbiome&#8221; &#8211; jobRxiv</title>
+	<link>https://jobrxiv.org</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>Research Project Manager &#8211; One Health Microbiome Center</title>
+		<link>https://jobrxiv.org/job/pennsylvania-state-university-27778-research-project-manager-one-health-microbiome-center/</link>
+		
+		<dc:creator><![CDATA[Seth Bordenstein]]></dc:creator>
+		<pubDate>Sat, 03 Oct 2026 18:03:02 +0000</pubDate>
+				<guid isPermaLink="false">https://jobrxiv.org/?post_type=job_listing&#038;p=155377</guid>
+
+					<description><![CDATA[POSITION SPECIFICS​ The One Health Microbiome Center at Penn State&#8217;s Huck Institutes of the Life Sciences is a leading interdisciplinary research center with more than 550 members representing 42 academic...]]></description>
+										<content:encoded><![CDATA[<p><b>POSITION SPECIFICS</b>​</p>
+<p>The <b><a href="https://www.huck.psu.edu/research/centers-institutes/one-health-microbiome-center" target="_blank" rel="noopener noreferrer">One Health Microbiome Center</a></b><b> </b> at Penn State&#8217;s <b>Huck Institutes of the Life Sciences</b> is a leading interdisciplinary research center with more than 550 members representing 42 academic departments. The Center advances microbiome research and applications that improve outcomes across human, agricultural, and ecosystem health.</p>
+<p>We are seeking a highly motivated, organized, and collaborative]]></content:encoded>
+					
+		
+		
+		<job_listing:location><![CDATA[United States (US)]]></job_listing:location>
+<job_listing:job_type><![CDATA[Full-time]]></job_listing:job_type>
+<job_listing:company><![CDATA[Pennsylvania State University]]></job_listing:company>
+	</item>
+		<item>
+		<title>Postdoctoral Research Fellow</title>
+		<link>https://jobrxiv.org/job/postdoctoral-research-fellow-67/</link>
+		
+		<dc:creator><![CDATA[Jobfront Academia]]></dc:creator>
+		<pubDate>Sat, 07 Nov 2026 06:12:14 +0000</pubDate>
+				<guid isPermaLink="false">https://jobrxiv.org/job/postdoctoral-research-fellow-67/</guid>
+
+					<description><![CDATA[Postdoctoral Research Fellow The Uterine Health Research Lab at UBC, led by Dr. Aline Talhouk, is a data-driven research group working at the intersection of uterine health, gynecologic oncology, computational...]]></description>
+										<content:encoded><![CDATA[<div>
+<h2>Postdoctoral Research Fellow</h2>
+<p>The Uterine Health Research Lab at UBC, led by Dr. Aline Talhouk, is a data-driven research group working at the intersection of uterine health, gynecologic oncology, computational biology, clinical informatics, and artificial intelligence. The lab develops and applies innovative data science and AI approaches to improve cancer prevention, diagnosis, treatment decision-making, and patient outcomes, with a growing focus on personalized medicine and AI-assisted clinical decision support.</p>
+<p>Our research integrates clinical, molecular, and real-w]]></content:encoded>
+					
+		
+		
+		<job_listing:location><![CDATA[Canada]]></job_listing:location>
+<job_listing:job_type><![CDATA[Full-time]]></job_listing:job_type>
+<job_listing:company><![CDATA[University of British Columbia Faculty]]></job_listing:company>
+	</item>
+	</channel>
+</rss>

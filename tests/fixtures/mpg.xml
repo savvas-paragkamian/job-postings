@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:mpg="https://www.mpg.de/rss/extensions">
+  <channel>
+    <title>Job offers - Max Planck Society.</title>
+    <link>https://www.mpg.de/feeds/jobs.rss</link>
+    <description>The latest job offers of Max Planck Society.</description>
+    <language>en</language>
+    <pubDate>Wed, 11 Nov 2026 00:00:00 +0100</pubDate>
+    <lastBuildDate>Wed, 11 Nov 2026 12:18:33 +0100</lastBuildDate>
+    <item>
+      <title>Scientific software engineer (f/m/d) in SWI Science Operations</title>
+      <link>https://www.mpg.de/27081711/scientific-software-engineer-swi-science-operations</link>
+      <description>Scientific Software Engineer (f/m/d) - Submillimetre Wave Instrument (SWI) as part of ESA&#39;s Jupiter Icy Moon Explorer (JUICE) mission to Jupiter
+</description>
+      <pubDate>Tue, 10 Nov 2026 11:55:00 +0100</pubDate>
+      <guid isPermaLink="true">https://www.mpg.de/27081711/scientific-software-engineer-swi-science-operations?1794308100</guid>
+      <dc:date>2026-11-10T11:55:00+01:00</dc:date>
+    </item>
+    <item>
+      <title>Software engineer (f/m/d) | SWI ground segment</title>
+      <link>https://www.mpg.de/27081351/software-engineer-swi-ground-segment</link>
+      <description>Software engineer (f/m/d) - Submillimetre Wave Instrument (SWI) as part of ESA&#39;s Jupiter Icy Moon Explorer (JUICE) mission to Jupiter</description>
+      <pubDate>Tue, 10 Nov 2026 11:41:00 +0100</pubDate>
+      <guid isPermaLink="true">https://www.mpg.de/27081351/software-engineer-swi-ground-segment?1794307260</guid>
+      <dc:date>2026-11-10T11:41:00+01:00</dc:date>
+    </item>
+    <item>
+      <title>Postdoctoral position (m/f/d) | The sensory ecology of worm towers</title>
+      <link>https://www.mpg.de/27081385/postdoctoral-position-the-sensory-ecology-of-worm-towers-178</link>
+      <description>We recently established that towering  behavior is a mechanism for collective dispersal in Caenorhabditis nematodes. We also identified natural dispersal vectors for nematode species in our field sites, defining the ecological context for tower-mediated dispersal. For this project, we aim to understand how worm towers acquire, process, and respond to environmental and social information using their senses (e.g. mechano-, olfactory-, electro-sensing) to achieve successful tower construction, vector detection, and collective relocation. </description>
+      <pubDate>Tue, 10 Nov 2026 11:30:00 +0100</pubDate>
+      <guid isPermaLink="true">https://www.mpg.de/27081385/postdoctoral-position-the-sensory-ecology-of-worm-towers-178?1794306600</guid>
+      <dc:date>2026-11-10T11:30:00+01:00</dc:date>
+    </item>
+    <dc:date>2026-11-11T00:00:00+01:00</dc:date>
+  </channel>
+</rss>
