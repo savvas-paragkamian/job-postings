@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 from common import FIELDS, clean, iso_date, strip_tracking
 
 EXTENSION = {"rss": "xml", "euraxess": "html", "workday": "json", "jrc": "json", "eu_funding": "json",
-             "madgex": "html", "jobs_ac_uk": "html"}
+             "madgex": "html", "jobs_ac_uk": "html", "selectminds": "html"}
 
 
 def posting(**fields):
@@ -138,6 +138,49 @@ def parse_jobs_ac_uk(body, source, date):
                            posted=day_month(part(r"Date Placed:\s*</strong>(.*?)</div>"), date, closing=False),
                            deadline=day_month(part(r'date--blue[^"]*">(.*?)</span>'), date, closing=True),
                            summary=part(r'j-search-result__department">(.*?)</div>')))
+    return out
+
+
+# --- SelectMinds landing pages: Berkeley Lab (JGI openings, postdoctoral fellows) ------
+# The first page of a landing page is in the HTML, newest first; later pages are loaded
+# by script, so one page a day is read.
+
+request_selectminds = request_rss
+
+
+def selectminds_date(text, date):
+    """'1 day ago', '3 days ago', 'Today' or 'Nov 05, 2026' as YYYY-MM-DD."""
+    text = (text or "").strip()
+    if re.match(r"(?i)today|\d+ hours? ago", text):
+        return date
+    age = re.match(r"(\d+) days? ago", text)
+    if age:
+        return (dt.date.fromisoformat(date) - dt.timedelta(days=int(age[1]))).isoformat()
+    try:
+        return dt.datetime.strptime(text, "%b %d, %Y").date().isoformat()
+    except ValueError:
+        return ""
+
+
+def parse_selectminds(body, source, date):
+    """One <div class="job_list_row"> per job: title and link, place, the first words of the
+    advert, the requisition number and the post date. Jobs at the Joint Genome Institute
+    say so in their first words."""
+    out = []
+    for item in re.split(r'class="job_list_row\b', body.decode("utf-8", "replace"))[1:]:
+        link = re.search(r'<a href="([^"]+)" class="job_link[^"]*">(.*?)</a>', item, re.S)
+        if not link:
+            continue
+        part = lambda pattern: clean((re.search(pattern, item, re.S) or ["", ""])[1])
+        summary = part(r'class="jlr_description">(.*?)</p>')
+        org = source.get("organisation", "")
+        if "Joint Genome Institute" in summary:
+            org += " (JGI)"
+        req = part(r'job_external_id"><span class="field_value">(.*?)</span>')
+        out.append(posting(uid=link[1], title=clean(link[2]), organisation=org, url=link[1], summary=summary,
+                           location=part(r'class="location[^"]*"[^>]*><span[^>]*>.*?</span>(.*?)</a>'),
+                           notes=f"Requisition {req}" if req else "",
+                           posted=selectminds_date(part(r'job_post_date"><span class="field_value">(.*?)</span>'), date)))
     return out
 
 

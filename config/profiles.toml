@@ -149,9 +149,9 @@ require = ["biodiversity", "ecolog*", "soil*", "microb*", "species", "nature", "
 # Platforms. `type` names the code in scripts/sources.py that asks and reads
 # them. A url with {query} is sent once for each query of the profiles of the
 # same kind, or for each of the platform's own `queries` if it has them (category
-# pages on Nature and THE), page by page ({page} counts from 1, {page0} from 0)
-# until a page adds nothing new or `pages` is reached. A url without {query} is
-# read whole and every posting in it is scored.
+# pages on Nature and THE, landing pages at Berkeley Lab), page by page ({page}
+# counts from 1, {page0} from 0) until a page adds nothing new or `pages` is
+# reached. A url without {query} is read whole and every posting in it is scored.
 #   score = false   list every new posting, unscored (Greek-language feeds,
 #                   where English keywords cannot judge a title); with `keep`,
 #                   only titles that contain one of its words
@@ -232,6 +232,16 @@ kind = "job"
 type = "rss"
 url = "https://www.mpg.de/feeds/jobs.rss"
 organisation = "Max Planck Society"
+
+[[sources]]
+id = "lbl"
+name = "Berkeley Lab (JGI and postdoctoral fellows)"
+kind = "job"
+type = "selectminds"
+url = "https://lbl.referrals.selectminds.com/{query}"
+queries = ["page/jgi-job-openings-68", "landingpages/postdoctoral-fellow-opportunities-at-lbl-12"]
+organisation = "Berkeley Lab"
+pages = 1                    # newest 10 of each page; later pages are loaded by script. robots.txt allows all
 
 [[sources]]
 id = "ajo"

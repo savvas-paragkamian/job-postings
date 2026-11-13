@@ -1,14 +1,11 @@
 # Open now
 
-Updated 2026-11-12. Postings with a deadline still ahead, or without one and seen in the last 30 days; soonest deadline first. 🆕 first seen in the last 7 days. Daily lists: [index](index.md).
+Updated 2026-11-13. Postings with a deadline still ahead, or without one and seen in the last 30 days; soonest deadline first. 🆕 first seen in the last 7 days. Daily lists: [index](index.md).
 
-## Microbial ecology & computational (meta)genomics (93)
+## Microbial ecology & computational (meta)genomics (95)
 
 *Fits:* PhD on the soil microbiome interactome; Island Sampling Day Crete shotgun metagenomes (JGI, GSC); full-length 16S of Gourgouthakas Cave (-1,100 m); Bacilli endophyte genomes and BGC mining; EMBL CPP fellowship for TREC multi-omics.
 
-- 🆕 **[Research Technician in Microbiology](https://www.jobs.ac.uk/job/DTL602/research-technician-in-microbiology)** · University of Leeds  
-  Leeds · £29,588 to £33,002 per annum · posted 2026-10-29 · **deadline 2026-11-12**  
-  score 3: microbiolog\* · on jobs.ac.uk
 - 🆕 **[Research Technician in Microbiome](https://www.jobs.ac.uk/job/DTH458/research-technician-in-microbiome)** · Newcastle University  
   Newcastle upon Tyne · £32,722 to £33,662 with progression to £35,302 per annum. · posted 2026-10-16 · **deadline 2026-11-16**  
   score 3: microbiome\* · on jobs.ac.uk
@@ -81,6 +78,9 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[ASARI - Postdoc in Soil Microbiology](https://www.timeshighereducation.com/unijobs/listing/417406/asari-postdoc-in-soil-microbiology/)** · MOHAMMED VI POLYTECHNIC UNIVERSITY  
   Benguerir, Morocco (MA) · posted 2026-11-06  
   score 7: microbiolog\*, soil microbiolog\*, microbial; also fits *Soil health, biodiversity monitoring & science for policy* · on Times Higher Education jobs
+- 🆕 **[Associate Professor in Microbial Ecology](https://jobrxiv.org/job/associate-professor-in-microbial-ecology/)** · Aarhus University  
+  Denmark · posted 2026-11-06  
+  score 7: microbial, microbial ecology, microbiolog\*; also fits *Soil health, biodiversity monitoring & science for policy* · on jobRxiv
 - **[Bioinformatics and Computational Biology Specialist](https://jobs.sciencecareers.org/job/680612/bioinformatics-and-computational-biology-specialist/)** · American University of Beirut  
   Beirut (LB) · To be discussed upon recruitment.  · posted 2026-10-07  
   score 6: bioinformatic\*, computational biolog\* · on Science Careers
@@ -105,18 +105,18 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - **[Assistant professor in plant-microbe interactions](https://www.nature.com/naturecareers/job/12865433/assistant-professor-in-plant-microbe-interactions/)** · Aarhus University (AU)  
   Aarhus, Midtjylland (DK) · Competitive · posted 2026-10-06  
   score 4: plant-microbe, microbial · on Nature Careers
-- 🆕 **[Postdoctoral Scholar in Visual System Neurobiology & Multi-Omics](https://www.nature.com/naturecareers/job/12864661/postdoctoral-scholar-in-visual-system-neurobiology-and-multi-omics/)** · University of California Los Angeles  
-  Los Angeles, California · DOE · posted 2026-09-16  
-  score 4: multi-omic\*, bioinformatic\* · on Nature Careers
-- 🆕 **[Postdoc in Microbial Single-Cell Genomics and Transcriptomics](https://jobrxiv.org/job/postdoc-in-microbial-single-cell-genomics-and-transcriptomics/)** · University of Copenhagen  
-  Denmark · posted 2026-11-07  
-  score 4: microbial, microbiolog\* · on jobRxiv
-- 🆕 **[Postdoctoral position for team science investigation of phage-microbiome interactions](https://fems-microbiology.org/opportunities/postdoctoral-position-for-team-science-investigation-of-phage-microbiome-interactions/)**  
-  posted 2026-08-13  
-  score 4: microbiome\*, microbes · on FEMS jobs (microbiology)
 - 🆕 **[7 Doctoral and 2 Postdoctoral Researcher Positions in the Cluster of Excellence ‘Microbes for Climate’](https://fems-microbiology.org/opportunities/7-doctoral-and-2-postdoctoral-researcher-positions-in-the-cluster-of-excellence-microbes-for-climate/)**  
   posted 2026-08-07  
   score 4: microbes, microbial · on FEMS jobs (microbiology)
+- 🆕 **[Postdoctoral position for team science investigation of phage-microbiome interactions](https://fems-microbiology.org/opportunities/postdoctoral-position-for-team-science-investigation-of-phage-microbiome-interactions/)**  
+  posted 2026-08-13  
+  score 4: microbiome\*, microbes · on FEMS jobs (microbiology)
+- 🆕 **[Postdoc in Microbial Single-Cell Genomics and Transcriptomics](https://jobrxiv.org/job/postdoc-in-microbial-single-cell-genomics-and-transcriptomics/)** · University of Copenhagen  
+  Denmark · posted 2026-11-07  
+  score 4: microbial, microbiolog\* · on jobRxiv
+- 🆕 **[Postdoctoral Scholar in Visual System Neurobiology & Multi-Omics](https://www.nature.com/naturecareers/job/12864661/postdoctoral-scholar-in-visual-system-neurobiology-and-multi-omics/)** · University of California Los Angeles  
+  Los Angeles, California · DOE · posted 2026-09-16  
+  score 4: multi-omic\*, bioinformatic\* · on Nature Careers
 - **[Assistant Professor of Microbiology in Biological Sciences](https://jobrxiv.org/job/the-university-of-alabama-27778-assistant-professor-of-microbiology-in-biological-sciences/)** · The University of Alabama  
   United States (US) · Competitive  · posted 2026-09-17  
   score 3: microbiolog\* · on Science Careers, jobRxiv
@@ -126,9 +126,9 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - **[Bioinformatician - Pathogen](https://jobs.sciencecareers.org/job/680395/bioinformatician-pathogen/)** · Ellison Institute of Technology  
   Oxford, Oxfordshire · Competitive salary · posted 2026-09-26  
   score 3: bioinformatic\* · on Science Careers
-- and 53 more with lower scores or later deadlines (all in data/seen.csv)
+- and 55 more with lower scores or later deadlines (all in data/seen.csv)
 
-## Biodiversity informatics, text mining & AI (12)
+## Biodiversity informatics, text mining & AI (13)
 
 *Fits:* KYBELE (LLM extraction of biodiversity knowledge from the literature, ELIXIR); PREGO and DECO text-mining workflows; EMODnet Biology; Darwin Core and MIxS curation; Dawn Field Award (Genomic Standards Consortium).
 
@@ -159,17 +159,20 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[Data Scientist – Data Modeling/analytics](https://jobrxiv.org/job/data-scientist-data-modeling-analytics/)** · Amgen  
   India · posted 2026-08-27  
   score 3: data scientist\* · on jobRxiv
-- 🆕 **[Data Scientist (US Value & Access Insights)](https://jobrxiv.org/job/data-scientist-us-value-access-insights-5/)** · Amgen  
-  India · posted 2026-07-02  
-  score 3: data scientist\* · on jobRxiv
 - 🆕 **[Data Scientist (US Value & Access Insights)](https://jobrxiv.org/job/data-scientist-us-value-access-insights-4/)** · Amgen  
   India · posted 2026-03-11  
+  score 3: data scientist\* · on jobRxiv
+- 🆕 **[Data Scientist (US Value & Access Insights)](https://jobrxiv.org/job/data-scientist-us-value-access-insights-5/)** · Amgen  
+  India · posted 2026-07-02  
   score 3: data scientist\* · on jobRxiv
 - 🆕 **[Laser Ablation, Automation and Digitisation Research Scientist](https://jobrxiv.org/job/laser-ablation-automation-and-digitisation-research-scientist/)** · University of Melbourne  
   Australia · posted 2026-10-27  
   score 3: digitisation · on jobRxiv
+- 🆕 **[Research Assistant in Marine Taxonomy](https://jobrxiv.org/job/research-assistant-in-marine-taxonomy/)** · Aarhus University  
+  Denmark · posted 2026-11-10  
+  score 3: taxonom\* · on jobRxiv
 
-## Soil health, biodiversity monitoring & science for policy (73)
+## Soil health, biodiversity monitoring & science for policy (76)
 
 *Fits:* NECCA Article 17 invertebrate assessments (Directive 92/43/EEC, ETL workflow); conservation status of Cretan endemic arthropods under Natura 2000; Cave Fauna of Greece database; EUSO Young Soil Researchers Forum; TETTRIS soil data science course.
 
@@ -179,6 +182,9 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[Monitoring, management and conservation of Mediterranean island habitats and invasive alien plant species in the Tuscan Archipelago](https://euraxess.ec.europa.eu/jobs/477314)** · Italian Ministry of Education, University and Research  
   Italy · R1, R2, R3, R4 · posted 2026-11-04 · **deadline 2026-11-18**  
   score 12: monitoring, conservation, habitat\*, island\* · on EURAXESS jobs
+- 🆕 **[Senior PDRA: SOB4ES - The Economic Value of Soil Biodiversity and Ecosystem Services \[Full Time, Fixed Term until 3 February 2028\]](https://www.jobs.ac.uk/job/DTQ012/senior-pdra-sob4es-the-economic-value-of-soil-biodiversity-and-ecosystem-services-full-time-fixed-term-until-3-february-2028)** · Harper Adams University  
+  Remote · £40,705 to £45,641 per annum (The point of entry will be dependent upon relevant qualifications and experience). Grade 9 · posted 2026-11-12 · **deadline 2026-11-18**  
+  score 9: soil\*, ecosystem service\*, biodiversity; also fits *Biodiversity informatics, text mining & AI* · on jobs.ac.uk
 - 🆕 **[Postdoc position on Ecological Scaling (M/F)](https://euraxess.ec.europa.eu/jobs/476109)** · CNRS - National Center for Scientific Research  
   France · R1 · posted 2026-10-29 · **deadline 2026-11-18**  
   score 3: ecolog\* · on EURAXESS jobs
@@ -203,18 +209,24 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[Research Fellow in Causal Inference and Ecology](https://www.jobs.ac.uk/job/DTL749/research-fellow-in-causal-inference-and-ecology)** · University of Southampton  
   Southampton · £37,369 to £45,641 · posted 2026-10-29 · **deadline 2026-11-25**  
   score 3: ecolog\* · on EURAXESS jobs, Times Higher Education jobs, jobs.ac.uk
+- 🆕 **[Research Fellow in Causal Inference and Ecology](https://www.jobs.ac.uk/job/DTL749/research-fellow-in-causal-inference-and-ecology)** · University of Southampton  
+  Southampton · £37,369 to £45,641 · posted 2026-10-29 · **deadline 2026-11-25**  
+  score 3: ecolog\* · on Times Higher Education jobs, jobs.ac.uk
 - **[Researcher or Researcher (II) (CKS26-003), Seafloor Observatories Research Group, Research and Development Center for Geodetic and Geophysical Monitoring (GGM), Research Institute for Marine Geodynamics (IMG)](https://euraxess.ec.europa.eu/jobs/473537)** · JREC-IN Portal  
   Japan · R2 · posted 2026-10-17 · **deadline 2026-11-30**  
   score 3: monitoring · on EURAXESS jobs
-- 🆕 **[Research Leader, Conservation Science](https://www.jobs.ac.uk/job/DTM057/research-leader-conservation-science)** · Royal Botanic Gardens, Kew  
-  London, Richmond, Royal Botanic Gardens, Kew · £47,953 to £55,499 Band E · posted 2026-10-30 · **deadline 2026-11-30**  
-  score 3: conservation · on jobs.ac.uk
-- 🆕 **[Senior Research Leader, Conservation Science](https://www.jobs.ac.uk/job/DTM050/senior-research-leader-conservation-science)** · Royal Botanic Gardens, Kew  
-  London, Richmond, Royal Botanic Gardens, Kew, Hybrid · £63,116 to £71,300 Band F7 · posted 2026-10-30 · **deadline 2026-11-30**  
-  score 3: conservation · on jobs.ac.uk
 - 🆕 **[Professor of Practice, Applied Economics and Policy Area](https://academicjobsonline.org/ajo/Cornell/College%20of%20Business/33116)** · Cornell University  
   Ithaca, US · posted 2026-10-16 · **deadline 2026-11-30**  
   score 3: policy · on Academic Jobs Online
+- 🆕 **[Senior Research Leader, Conservation Science](https://www.jobs.ac.uk/job/DTM050/senior-research-leader-conservation-science)** · Royal Botanic Gardens, Kew  
+  London, Richmond, Royal Botanic Gardens, Kew, Hybrid · £63,116 to £71,300 Band F7 · posted 2026-10-30 · **deadline 2026-11-30**  
+  score 3: conservation · on jobs.ac.uk
+- 🆕 **[Research Leader, Conservation Science](https://www.jobs.ac.uk/job/DTM057/research-leader-conservation-science)** · Royal Botanic Gardens, Kew  
+  London, Richmond, Royal Botanic Gardens, Kew · £47,953 to £55,499 Band E · posted 2026-10-30 · **deadline 2026-11-30**  
+  score 3: conservation · on jobs.ac.uk
+- 🆕 **[Policy and Engagement Officer](https://www.jobs.ac.uk/job/DTP945/policy-and-engagement-officer)** · Newcastle University  
+  Newcastle upon Tyne · £32,722 to £33,662 with progression to £35,302 per annum. · posted 2026-11-12 · **deadline 2026-12-03**  
+  score 3: policy · on jobs.ac.uk
 - 🆕 **[GSMI - Postdoctoral Researcher in Plant Ecology & Soil-Plant Interactions in Vegetated Photovoltaic](https://euraxess.ec.europa.eu/jobs/478299)** · Times Higher Education  
   Benguerir, Morocco (MA) · R2, R3 · posted 2026-11-06 · **deadline 2026-12-04**  
   score 6: soil\*, ecolog\* · on EURAXESS jobs, Times Higher Education jobs
@@ -263,15 +275,15 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[GSMI - Postdoctoral Researcher in Plant Ecology & Soil-Plant Interactions in Vegetated Photovoltaic](https://www.timeshighereducation.com/unijobs/listing/417361/gsmi-postdoctoral-researcher-in-plant-ecology-and-soil-plant-interactions-in-vegetated-photovoltaic/)** · MOHAMMED VI POLYTECHNIC UNIVERSITY  
   Benguerir, Morocco (MA) · posted 2026-11-05  
   score 6: soil\*, ecolog\* · on Times Higher Education jobs
-- 🆕 **[Tenure-Track Professor in Biodiversity, Conservation, or Land Surface Processes](https://jobs.sciencecareers.org/job/680733/tenure-track-professor-in-biodiversity-conservation-or-land-surface-processes/)** · Department of Earth and Planetary Sciences, Harvard University   
-  Cambridge, Massachusetts · $110,000 – $165,000 · posted 2026-10-14  
-  score 6: conservation, biodiversity; also fits *Biodiversity informatics, text mining & AI* · on Science Careers
-- 🆕 **[Research Fellow (Ecology/Biogeochemistry/Earth/Soil Science/Environmental Science/Hydrology/Computer Science)](https://jobrxiv.org/job/research-fellow-ecology-biogeochemistry-earth-soil-science-environmental-science-hydrology-computer-science/)** · Nanyang Technological University  
-  Singapore · posted 2026-10-19  
-  score 6: soil\*, ecolog\*; also fits *Complex systems, networks & quantitative ecology* · on jobRxiv
 - 🆕 **[Research Associate/Research Fellow (Ecology/Biogeochemistry/Earth Science/Soil Science/Environmental Science/Hydrology/Computer Science)](https://jobrxiv.org/job/research-associate-research-fellow-ecology-biogeochemistry-earth-science-soil-science-environmental-science-hydrology-computer-science/)** · Nanyang Technological University  
   Singapore · posted 2026-04-29  
   score 6: soil\*, ecolog\*; also fits *Complex systems, networks & quantitative ecology* · on jobRxiv
+- 🆕 **[Research Fellow (Ecology/Biogeochemistry/Earth/Soil Science/Environmental Science/Hydrology/Computer Science)](https://jobrxiv.org/job/research-fellow-ecology-biogeochemistry-earth-soil-science-environmental-science-hydrology-computer-science/)** · Nanyang Technological University  
+  Singapore · posted 2026-10-19  
+  score 6: soil\*, ecolog\*; also fits *Complex systems, networks & quantitative ecology* · on jobRxiv
+- 🆕 **[Tenure-Track Professor in Biodiversity, Conservation, or Land Surface Processes](https://jobs.sciencecareers.org/job/680733/tenure-track-professor-in-biodiversity-conservation-or-land-surface-processes/)** · Department of Earth and Planetary Sciences, Harvard University   
+  Cambridge, Massachusetts · $110,000 – $165,000 · posted 2026-10-14  
+  score 6: conservation, biodiversity; also fits *Biodiversity informatics, text mining & AI* · on Science Careers
 - **[Postdoctoral Researcher (f/m/x) Food Web Ecology](https://www.nature.com/naturecareers/job/12864765/postdoctoral-researcher-f-m-x-food-web-ecology/)** · Helmholtz Association of German Research Centres  
   Magdeburg · posted 2026-09-03  
   score 4: ecolog\*, biodiversity; also fits *Complex systems, networks & quantitative ecology* · on Nature Careers
@@ -284,16 +296,7 @@ Updated 2026-11-12. Postings with a deadline still ahead, or without one and see
 - 🆕 **[Research Leader (Mycorrhizal Ecology)](https://www.nature.com/naturecareers/job/12866608/research-leader-mycorrhizal-ecology-/)** · Royal Botanic Gardens Kew  
   Kew Gardens, Richmond · £47,953 to £55,449 per year \[Grade E\] · posted 2026-11-10  
   score 4: ecolog\*, biodiversity · on Nature Careers
-- 🆕 **[Senior Research Leader (Mycorrhizal Ecology)](https://www.nature.com/naturecareers/job/12866678/-senior-research-leader-mycorrhizal-ecology-/)** · Royal Botanic Gardens Kew  
-  Kew Gardens, Richmond · £63,116 to £71,300 per year \[Grade F7\] · posted 2026-11-11  
-  score 4: ecolog\*, biodiversity · on Nature Careers
-- 🆕 **[Research Leader (Mycorrhizal Ecology)](https://www.nature.com/naturecareers/job/12866677/research-leader-mycorrhizal-ecology-/)** · Royal Botanic Gardens Kew  
-  Kew Gardens, Richmond · £47,953 to £55,449 per year \[Grade E\] · posted 2026-11-11  
-  score 4: ecolog\*, biodiversity · on Nature Careers
-- **[Curator, Marine Invertebrates](https://jobs.sciencecareers.org/job/679919/curator-marine-invertebrates/)** · National History Museum of Los Angeles County  
-  Los Angeles, California · $83,000-$112,000 · posted 2026-08-31  
-  score 3: invertebrat\* · on Science Careers
-- and 33 more with lower scores or later deadlines (all in data/seen.csv)
+- and 36 more with lower scores or later deadlines (all in data/seen.csv)
 
 ## Complex systems, networks & quantitative ecology (9)
 

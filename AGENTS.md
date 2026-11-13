@@ -201,3 +201,34 @@ fetched, and those two were not read that day.
 Left out, with reasons in README.md: AcademicTransfer, Academic Positions,
 Academics.com, Helmholtz, University Positions, Jobbnorge. Not run: a live run of
 this repository with the new config; the next scheduled run will be the first.
+
+## Berkeley Lab: JGI openings (13 November 2026)
+
+Asked: "you are missing these https://lbl.referrals.selectminds.com/page/jgi-job-openings-68",
+the Joint Genome Institute's openings on Berkeley Lab's job board (SelectMinds).
+
+Read: the board's robots.txt (`Disallow:` empty, so everything is allowed) and its
+SEO sitemap, which lists one landing page per job category, among them
+`postdoctoral-fellow-opportunities-at-lbl-12`. A landing page carries its newest
+10 jobs in the HTML (title, place, about 150 characters of the advert, requisition
+number, post date) and loads the rest by script. The "other jobs matching" category
+links answered "Access Forbidden" and are not used.
+
+Changed:
+
+- `type = "selectminds"` (`request_selectminds`, `parse_selectminds`,
+  `selectminds_date`): one request per landing page; "N days ago", "Today" and
+  "Nov 05, 2026" as dates; "Berkeley Lab (JGI)" when the advert names the institute.
+- `config/profiles.toml`, at the author's request: platform `lbl` with two
+  `queries`, the JGI page and the postdoctoral page (2 requests a day).
+- 1 new test (34 in all) on a trimmed copy of the postdoctoral page.
+
+Measured in a scratch copy of the repository (`fetch.py --only=lbl`, then
+`run.py --no-fetch` for 13 November): 13 jobs read, 11 distinct. The three JGI
+openings fit microbial-genomics at score 3 (Metagenome Research Scientist,
+Microbiome Postdoctoral Fellow, Microbial Genomics Postdoctoral Fellow). None of
+the 8 other postdoc posts fits. Three of them are titled only "Postdoctoral
+Researcher", with adverts asking for ecology, soil science or biogeochemistry;
+on 150 characters they reach 1 or 2 (soil-conservation-policy). Not changed:
+reading each advert page would score them on the full text, at about 10 more
+requests a day.

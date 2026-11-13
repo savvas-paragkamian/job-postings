@@ -100,6 +100,19 @@ class Readers(unittest.TestCase):
         self.assertEqual(first["summary"], "Department of Biosciences")
         self.assertEqual((first["posted"], first["deadline"]), ("2026-11-10", "2026-11-23"))   # "10 Nov", "23 Nov"
 
+    def test_selectminds_berkeley_lab(self):
+        # LBL's postdoctoral page of 13 November 2026; the JGI page has the same markup
+        jgi, ess = self.read("selectminds", "lbl", "selectminds_lbl.html", "2026-11-13")
+        self.assertEqual((jgi["title"], jgi["organisation"]), ("Microbiome Postdoctoral Fellow", "Berkeley Lab (JGI)"))
+        self.assertEqual((jgi["location"], jgi["notes"]), ("Bay Area, California, United States", "Requisition 107905"))
+        self.assertEqual(jgi["url"], "https://lbl.referrals.selectminds.com/jobs/microbiome-postdoctoral-fellow-7697")
+        self.assertEqual((jgi["posted"], ess["posted"]), ("2026-11-12", "2026-11-02"))    # "1 day ago", "Nov 02, 2026"
+        self.assertEqual(ess["organisation"], "Berkeley Lab")
+        self.assertEqual([sources.selectminds_date(t, "2026-11-13") for t in ["Today", "3 days ago", "soon"]],
+                         ["2026-11-13", "2026-11-10", ""])
+        self.assertEqual(sources.request_selectminds(SOURCE["lbl"], "page/jgi-job-openings-68", 1)[0],
+                         "https://lbl.referrals.selectminds.com/page/jgi-job-openings-68")
+
     def test_jobrxiv_search_feed(self):
         items = self.read("rss", "jobrxiv", "jobrxiv.xml", DATE2)
         self.assertEqual((items[1]["organisation"], items[1]["location"]), ("University of British Columbia Faculty", "Canada"))

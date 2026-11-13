@@ -1,6 +1,6 @@
 # job-postings
 
-Job and funding alerts that fit one CV. Every morning, scripts search thirteen platforms
+Job and funding alerts that fit one CV. Every morning, scripts search fourteen platforms
 for postings and calls, score each against five profiles drawn from the CV of
 Savvas Paragkamian, keep what fits, and write Markdown pages. A small local web
 server then shows those pages in the browser. A desktop notification (macOS or
@@ -66,6 +66,7 @@ the code in `scripts/sources.py` that talks to it.
 | [jobRxiv](https://jobrxiv.org) | non-profit science board, many postdocs; employer and country | the board's search as RSS, per query (50 results) | jobs |
 | [FEMS jobs](https://fems-microbiology.org/opportunities/) | microbiology only, mostly PhD and postdoc posts | RSS, the latest 10 | jobs |
 | [Max Planck Society](https://www.mpg.de/jobboard) | every Max Planck institute | RSS, the latest 30 | jobs |
+| [Berkeley Lab](https://lbl.referrals.selectminds.com/page/jgi-job-openings-68) | the DOE Joint Genome Institute's openings (metagenomics, microbial genomics), and every Berkeley Lab postdoc post | two landing pages (JGI openings, postdoctoral fellows), the newest 10 of each, HTML read by `parse_selectminds` | jobs |
 | [Academic Jobs Online](https://academicjobsonline.org/ajo/jobs) | about 360 adverts with deadlines; mostly physics and mathematics, but also US postdocs in microbiome and plant-microbe science | one RSS 1.0 feed (2 MB), every advert scored | jobs |
 | [EMBL and EMBL-EBI](https://www.embl.org/jobs/) | all six EMBL sites | the JSON behind their Workday site, every post, titles scored | jobs |
 | [JRC](https://recruitment.jrc.ec.europa.eu/) | the Commission's Joint Research Centre (EU Soil Observatory, Land and Climate) | the portal's JSON, every vacancy; one keyword is enough | jobs |
@@ -80,7 +81,9 @@ a list of faculty posts in microbiome science; its collector
 ([config/sources.yaml](https://github.com/callaband/microbiome-faculty-jobs/blob/main/config/sources.yaml))
 obeys robots.txt, and showed which route each board allows. Academic Jobs Online
 is on its "where else to look" list. Here they are read for postdocs: by search
-where the board has one, and scored with the same five profiles.
+where the board has one, and scored with the same five profiles. Berkeley Lab was
+added on 13 November 2026 at the author's request: its JGI openings page, and the
+lab's postdoctoral page beside it; robots.txt allows both.
 
 **robots.txt.** Nature's and THE's robots.txt disallow their keyword RSS
 (`/naturecareers/jobsrss/`, `/unijobs/jobsrss/`), which this project read until
@@ -122,7 +125,9 @@ URL-encoded form is silently ignored and returns all 32,000 records. Madgex boar
 (Nature, THE) number their category pages in the path (`/postdoctoral/2/`), and a
 page past the last repeats the last one, which ends the paging. jobs.ac.uk writes
 its dates without a year ("Closes 23 Nov"). Academic Jobs Online sends gzip even
-when not asked, and `common.http` unpacks it.
+when not asked, and `common.http` unpacks it. Berkeley Lab's board (SelectMinds)
+puts the newest 10 jobs of a landing page in the HTML and loads the rest by
+script, so one page a day is read; it dates a job "1 day ago" or "Nov 05, 2026".
 
 ## How a posting is chosen
 
@@ -170,7 +175,7 @@ queries (on Nature and THE they are category paths).
 
 | Path | Contents |
 |---|---|
-| `config/profiles.toml` | settings, exclusions, the five profiles, fifteen platforms (two off), six watched pages |
+| `config/profiles.toml` | settings, exclusions, the five profiles, sixteen platforms (two off), six watched pages |
 | `scripts/common.py` | shared helpers: dates, HTTP, text, keyword rules (`Terms`), scoring (`Scorer`), CSV |
 | `scripts/sources.py` | one `request_` and one `parse_` function per kind of platform |
 | `scripts/fetch.py` | step 1: ask every platform, save each answer in `data/raw/<date>/`, with `fetch.csv` |
@@ -239,7 +244,9 @@ labelled as written by an AI assistant, and the index links to it. Nothing in
   can miss an old one. Nature and THE are read in full, by category instead.
 - EMBL and JRC lists give titles only; the JRC also gives its unit's name. A
   vaguely titled post ("Project Officer") is scored on little text. Nature and THE
-  category pages give the first two lines of the advert.
+  category pages give the first two lines of the advert, Berkeley Lab's about 150
+  characters: its three "Postdoctoral Researcher" posts in ecology and soil science
+  reached 1 or 2 on 13 November.
 - Most boards give no deadline (Academic Jobs Online and jobs.ac.uk do). The
   deadline is on the posting.
 - Long adverts (Academic Jobs Online, jobRxiv) reach the score of 3 more easily
